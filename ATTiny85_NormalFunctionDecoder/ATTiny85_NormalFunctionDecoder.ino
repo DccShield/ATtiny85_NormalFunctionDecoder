@@ -1,14 +1,8 @@
 //--------------------------------------------------------------------------------
 //
-// SMFDEasy_AYA071 LED ファンクションデコーダスケッチ
-// Copyright(C)'2021 Ayanosuke(Maison de DCC)
-// [AYA071_FDLED.ino]
-// AYA071-2
-//
-// PIN_F0_F 0      // Atiny85 PB0(5pin)O7 analogwrite head light
-// PIN_F0_R 1      // Atiny85 PB1(6pin)O6 analogwrite tail light
-// PIN_AUX2 3      // Atint85 PB3(2pin)O3             sign light
-// PIN_AUX1 4      // Atiny85 PB4(3pin)O2 analogwrite room light
+// LED ファンクションデコーダスケッチ
+// Copyright(C)'2024 Ayanosuke(Maison de DCC)
+// [ATTiny85_NormalFunctionDecoder.ino]
 //
 // http://maison-dcc.sblo.jp/ http://dcc.client.jp/ http://ayabu.blog.shinobi.jp/
 // https://twitter.com/masashi_214
@@ -25,14 +19,33 @@
 #include "NmraDcc.h"
 #include <avr/eeprom.h>   //required by notifyCVRead() function if enabled below
 
-#define DEBUG      //リリースのときはコメントアウトすること
+//#define DEBUG      //リリースのときはコメントアウトすること
+
+//PB0 Head , PB1 Tail , PB3 Aux , PB4 Aux
+//AYA002,021,025,063,071,082
+#define PIN_F0_F 0      // Atiny85 PB0(5pin) analogwrite head light
+#define PIN_F0_R 1      // Atiny85 PB1(6pin) analogwrite tail light
+#define PIN_AUX2 3      // Atint85 PB3(2pin)              aux light
+#define PIN_AUX1 4      // Atiny85 PB4(3pin)              aux light
+
+//PB4 Head , PB3 Tail , PB0 Aux , PB1 Aux
+//AYA015,019
+//#define PIN_F0_F 4      // Atiny85 PB4(3pin) analogwrite head light
+//#define PIN_F0_R 3      // Atint85 PB3(2pin)             tail light
+//#define PIN_AUX1 0      // Atiny85 PB0(5pin)              aux light
+//#define PIN_AUX2 1      // Atiny85 PB1(6pin)              aux light
+
+//PB0 Head , PB3 Tail , PB1 Aux , PB4 Aux
+//AYA020,022,024,062
+//#define PIN_F0_F 0      // Atiny85 PB0(5pin) analogwrite head light
+//#define PIN_F0_R 3      // Atint85 PB3(2pin) analogwrite tail light
+//#define PIN_AUX2 1      // Atiny85 PB1(6pin)              aux light
+//#define PIN_AUX1 4      // Atiny85 PB4(3pin)              aux light
+
 
 //各種設定、宣言
 //                      // Atiny85 DCCin(7pin)
-#define PIN_F0_F 0      // Atiny85 PB0(5pin)O7 analogwrite head light
-#define PIN_F0_R 1      // Atiny85 PB1(6pin)O6 analogwrite tail light
-#define PIN_AUX2 3      // Atint85 PB3(2pin)O3             sign light
-#define PIN_AUX1 4      // Atiny85 PB4(3pin)O2 analogwrite room light
+
 
 //void Dccinit(void);
 
