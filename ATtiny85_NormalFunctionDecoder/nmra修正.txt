@@ -1,0 +1,18 @@
+2024/10/6
+NmraDcc.cpp:1330:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if((BoardAddress != getMyAddr()) && ( BoardAddress < 511 ))
+
+warning: comparison between signed and unsigned integer expressions
+符号付き整数式と符号なし整数式の比較
+
+int16_t BoardAddress ;
+uint16_t getMyAddr(void)
+
+BoardAddress は、int16_t ではなくて、uint16_tで良いのでは。
+
+
+
+ATTiny85_NormalFunctionDecoder.ino: In function 'void notifyDccReset(uint8_t)':
+/Users/macuser/Documents/Arduino/DCC/ATtiny85/ATtiny85本用/基本的なファンクションデコーダ/ATTiny85_NormalFunctionDecoder/ATTiny85_NormalFunctionDecoder/ATTiny85_NormalFunctionDecoder.ino:307:29: warning: unused parameter 'hardReset' [-Wunused-parameter]
+ void notifyDccReset(uint8_t hardReset )
+                             ^~~~~~~~~
